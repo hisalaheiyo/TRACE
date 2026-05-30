@@ -13,34 +13,7 @@ few-shot action recognition (CD-FSAR). One frozen backbone, no extra training,
 </p>
 
 ## Abstract
-
-Cross-domain few-shot action recognition (CD-FSAR) requires recognising
-unseen action classes in a new target domain from only a few labelled
-videos. Most methods invest in the training stage, with larger backbones,
-temporal modules, or meta-training objectives, and then reduce inference to
-comparing each query against support-based prototypes. We argue that this
-misplaces the effort. Under a large domain shift with very few labels, much
-of the error comes not from the quality of the frozen features but from how
-poorly the class prototypes and decision boundaries are estimated from the
-scarce supports.
-
-We quantify this with an oracle analysis. With the features held fixed,
-estimating the prototypes and boundaries from the query labels improves
-5-way 1-shot accuracy by 7 to 20 points across five target datasets. A
-large part of this estimation gap can be closed at test time, without any
-training, by exploiting the unlabelled query videos that every episode
-already contains.
-
-Guided by this diagnosis, we keep the backbone frozen and act only at
-inference. Our method, **TRACE**, has two complementary and label-free
-steps. **Confidence-Thresholded Transductive Prototype Refinement (CTPR)**
-moves each prototype toward its class centre by absorbing the queries it
-already classifies confidently. The refined prototypes then initialise a
-lightweight per-episode classifier, which **Transductive Classifier
-Refinement (TCR)** adapts so that its predictions over the query set are
-confident and class-balanced. Across five datasets and both 1- and 5-shot
-settings, TRACE consistently improves a strong CD-FSAR baseline and
-recovers a large fraction of the estimation gap.
+Cross-domain few-shot action recognition (CD-FSAR) aims to recognise unseen action classes in a target domain from only a handful of labelled videos. Despite substantial advances in representation learning, inference in CD-FSAR still relies on prototypes estimated from extremely limited support examples. To assess the impact of this bottleneck, we perform an oracle analysis while keeping the feature representation fixed. Constructing oracle prototypes and decision boundaries using the ground-truth query labels improves 5-way 1-shot accuracy by 7--20 percentage points across five target datasets. This reveals a substantial estimation gap: the representation already contains useful discriminative information, but prototypes and boundaries estimated from scarce supports fail to capture the true class structure of each episode. Motivated by this finding, we propose TRACE, a training-free transductive inference framework that improves episode-level estimation without modifying the backbone. TRACE consists of two complementary stages. Confidence-Thresholded Transductive Prototype Refinement (CTPR) refines support-based prototypes using confidently predicted query videos. The refined prototypes then initialise a lightweight per-episode classifier, which Transductive Classifier Refinement (TCR) further adapts by encouraging confident and class-balanced predictions over the entire query set. Together, the two stages improve prototype and boundary estimation, enabling more effective use of the information already present in the unlabelled queries. Across five target datasets (HMDB51, UCF101, SSv2, Diving48, and RareAct) and both 1-shot and 5-shot settings, TRACE consistently improves a strong CD-FSAR baseline, including gains of more than six percentage points on HMDB51 1-shot, while recovering a substantial fraction of the oracle-estimated gap. These results suggest that improving test-time estimation is a powerful and broadly applicable complement to representation learning for CD-FSAR under extreme support scarcity.
 
 ## Highlights
 
