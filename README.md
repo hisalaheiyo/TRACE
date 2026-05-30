@@ -12,6 +12,36 @@ few-shot action recognition (CD-FSAR). One frozen backbone, no extra training,
   <img src="pic/fig2_pipeline.png" alt="TRACE pipeline" width="92%"/>
 </p>
 
+## Abstract
+
+Cross-domain few-shot action recognition (CD-FSAR) requires recognising
+unseen action classes in a new target domain from only a few labelled
+videos. Most methods invest in the training stage, with larger backbones,
+temporal modules, or meta-training objectives, and then reduce inference to
+comparing each query against support-based prototypes. We argue that this
+misplaces the effort. Under a large domain shift with very few labels, much
+of the error comes not from the quality of the frozen features but from how
+poorly the class prototypes and decision boundaries are estimated from the
+scarce supports.
+
+We quantify this with an oracle analysis. With the features held fixed,
+estimating the prototypes and boundaries from the query labels improves
+5-way 1-shot accuracy by 7 to 20 points across five target datasets. A
+large part of this estimation gap can be closed at test time, without any
+training, by exploiting the unlabelled query videos that every episode
+already contains.
+
+Guided by this diagnosis, we keep the backbone frozen and act only at
+inference. Our method, **TRACE**, has two complementary and label-free
+steps. **Confidence-Thresholded Transductive Prototype Refinement (CTPR)**
+moves each prototype toward its class centre by absorbing the queries it
+already classifies confidently. The refined prototypes then initialise a
+lightweight per-episode classifier, which **Transductive Classifier
+Refinement (TCR)** adapts so that its predictions over the query set are
+confident and class-balanced. Across five datasets and both 1- and 5-shot
+settings, TRACE consistently improves a strong CD-FSAR baseline and
+recovers a large fraction of the estimation gap.
+
 ## Highlights
 
 - **Training-free at test time.** The backbone is frozen; TRACE never updates
@@ -53,29 +83,35 @@ implementation.
 All results use a VideoMAE ViT-S backbone at 112×112 (the common protocol).
 Best per column under that protocol in **bold**.
 
-### Source: Kinetics-400
+### Source: Kinetics-400, 5-way 1-shot
 
-|              | HMDB51 | UCF101 | SSv2  | Diving48 | RareAct | Avg.  |
-|--------------|:------:|:------:|:-----:|:--------:|:-------:|:-----:|
-| *1-shot*     |        |        |       |          |         |       |
-| TAMT‡        | 58.19  | 86.04  | 41.14 | 32.36    | 46.33   | 52.81 |
+| Method | HMDB51 | UCF101 | SSv2 | Diving48 | RareAct | Avg. |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| TAMT‡ | 58.19 | 86.04 | 41.14 | 32.36 | 46.33 | 52.81 |
 | **TRACE (ours)** | **64.81** | **95.35** | **43.56** | **34.15** | **51.09** | **57.79** |
-| *5-shot*     |        |        |       |          |         |       |
-| STARTUP++    | 44.71  | 60.82  | 39.60 | 14.92    | 45.22   | 41.05 |
-| DD++         | 48.04  | 63.26  | 44.50 | 16.23    | 47.01   | 43.81 |
-| CDFSL-V      | 53.23  | 65.42  | 49.92 | 17.84    | 49.80   | 47.24 |
-| TAMT‡        | 72.50  | 95.96  | 59.28 | 44.91    | 68.18   | 68.17 |
+
+### Source: Kinetics-400, 5-way 5-shot
+
+| Method | HMDB51 | UCF101 | SSv2 | Diving48 | RareAct | Avg. |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| STARTUP++ | 44.71 | 60.82 | 39.60 | 14.92 | 45.22 | 41.05 |
+| DD++ | 48.04 | 63.26 | 44.50 | 16.23 | 47.01 | 43.81 |
+| CDFSL-V | 53.23 | 65.42 | 49.92 | 17.84 | 49.80 | 47.24 |
+| TAMT‡ | 72.50 | 95.96 | 59.28 | 44.91 | 68.18 | 68.17 |
 | **TRACE (ours)** | **74.23** | **97.43** | **61.45** | **45.55** | **69.67** | **69.67** |
 
-### Source: Kinetics-100
+### Source: Kinetics-100, 5-way 1-shot
 
-|              | HMDB51 | UCF101 | SSv2  | Diving48 | RareAct | Avg.  |
-|--------------|:------:|:------:|:-----:|:--------:|:-------:|:-----:|
-| *1-shot*     |        |        |       |          |         |       |
-| TAMT         | 47.02  | 72.38  | 34.45 | 27.04    | 36.04   | 43.39 |
+| Method | HMDB51 | UCF101 | SSv2 | Diving48 | RareAct | Avg. |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| TAMT | 47.02 | 72.38 | 34.45 | 27.04 | 36.04 | 43.39 |
 | **TRACE (ours)** | **52.81** | **80.27** | **36.62** | **28.76** | **40.89** | **47.87** |
-| *5-shot*     |        |        |       |          |         |       |
-| TAMT         | 61.76  | 87.76  | 48.90 | 38.33    | 52.81   | 57.91 |
+
+### Source: Kinetics-100, 5-way 5-shot
+
+| Method | HMDB51 | UCF101 | SSv2 | Diving48 | RareAct | Avg. |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| TAMT | 61.76 | 87.76 | 48.90 | 38.33 | 52.81 | 57.91 |
 | **TRACE (ours)** | **62.99** | **89.11** | **51.23** | **38.83** | **54.08** | **59.25** |
 
 ‡ Our reproduction of TAMT. SEEN/DMSD numbers are reported in the paper but
