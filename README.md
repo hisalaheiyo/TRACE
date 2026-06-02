@@ -310,7 +310,7 @@ If you find TRACE useful for your work, please cite our paper:
 
 ```bibtex
 @inproceedings{trace2026,
-  title     = {Closing the Estimation Gap in Cross-Domain Few-Shot Action Recognition via Training-Free Transductive Inference},
+  title     = {Closing the Estimation Gap: Training-Free Transductive Inference for Cross-Domain Few-Shot Action Recognition},
   author    = {<Anonymous for review>},
   booktitle = {Proc. British Machine Vision Conference (BMVC)},
   year      = {2026}
