@@ -1,4 +1,4 @@
-# TRACE: Closing the Estimation Gap in Cross-Domain Few-Shot Action Recognition via Training-Free Transductive Inference
+# Closing the Estimation Gap: Training-Free Transductive Inference for Cross-Domain Few-Shot Action Recognition
 
 Official implementation of **TRACE**, a training-free, test-time procedure that
 closes a large fraction of the support-vs-oracle estimation gap on cross-domain
