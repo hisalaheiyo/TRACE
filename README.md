@@ -9,7 +9,7 @@ few-shot action recognition (CD-FSAR). One frozen backbone, no extra training,
 > [TAMT](https://github.com/TJU-YDragonW/TAMT) (Wang *et al.*, CVPR 2025).
 
 <p align="center">
-  <img src="pic/fig2_pipeline.png" alt="TRACE pipeline" width="92%"/>
+  <img src="pic/fig2_pipeline.png" alt="TRACE pipeline" width="100%"/>
 </p>
 TRACE: recovering the estimation gap at test time. Top: a target-domain episode is encoded into embeddings by a frozen VideoMAE-S encoder equipped with Temporal-Aware Adapters (TAA) and a Global Temporal-aware Moment Tuning (GTMT) head. Bottom: TRACE first applies Confidence-Thresholded Transductive Prototype Refinement (CTPR) to refine prototype estimates using only confident query samples, then performs Transductive Classifier Refinement (TCR) to adapt the decision boundary to the query distribution. The refined prototypes initialise the classifier before boundary refinement. Insets illustrate the effect of CTPR and TCR in a schematic feature space (stars: support; dots: query).
 
