@@ -128,23 +128,25 @@ are already encoded under `filelist/`.
 | Diving48   | [svcl.ucsd.edu](http://www.svcl.ucsd.edu/projects/resound/dataset.html) | `filelist/diving48/` |
 | RareAct    | [GitHub release](https://github.com/antoine77340/RareAct) | `filelist/rareact_cut/` |
 
-### Expected layout
+### Pointing the filelists at your data
 
-Point `--data_path` at the relevant filelist directory. The loader expands
-video paths relative to a dataset root that you provide via each filelist's
-`base.json` (one root path per dataset; edit it after downloading the data):
+Each dataset directory under `filelist/` contains JSON splits
+(`base.json`, `val.json`, `novel.json`) whose video paths are stored with a
+`<DATA_ROOT>` placeholder prefix. After downloading the datasets, run a
+single global replace:
 
-```
-<your_dataset_root>/
-├── HMDB51/      # paths inside filelist/hmdb51-molo/*.txt are relative to this
-├── UCF101/
-├── SSv2Full/
-├── Diving48/
-└── RareAct/
+```bash
+find filelist -name '*.json' -exec sed -i \
+    's|<DATA_ROOT>|/absolute/path/to/your/datasets|g' {} +
 ```
 
-The few-shot splits in `filelist/` use the same train/val/test class
-partition as MoLo and TAMT, ensuring fair comparison.
+The per-dataset sub-directory layout baked into the filelists matches the
+standard MoLo/TAMT release (`HMDB/HMDB51/`, `UCF/`, `ssth100/ssth_otam/smsm_otam/`,
+`Diving/rgb/`, `rareact_cut/`, `kinetics100/kinectis100_small/kinetics_100/`).
+If your local layout differs, adjust the per-dataset prefixes too.
+
+The few-shot class splits in `filelist/` follow MoLo and TAMT, ensuring
+fair comparison.
 
 ## Quick Start: TRACE Evaluation in Two Commands
 
