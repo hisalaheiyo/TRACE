@@ -252,7 +252,7 @@ ckpts are from this work.
 
 | Model | Source dataset | Checkpoint |
 |---|---|---|
-| ViT-S (140 epochs) | Kinetics-400, 364 classes | [Download](<DRIVE_LINK_K400>) |
+| ViT-S (140 epochs) | Kinetics-400, 364 classes | [Download](<[DRIVE_LINK_K400](https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/pretrained_k400)>) |
 
 ### Meta-trained (5-way 1-shot)
 
