@@ -252,27 +252,27 @@ ckpts are from this work.
 
 | Model | Source dataset | Checkpoint |
 |---|---|---|
-| ViT-S (140 epochs) | Kinetics-400, 364 classes | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/pretrained_k400)>) |
+| ViT-S (140 epochs) | Kinetics-400, 364 classes | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/pretrained_k400>) |
 
 ### Meta-trained (5-way 1-shot)
 
 | Dataset  | Accuracy (%, K-400 source) | Checkpoint |
 |----------|:--------------------------:|:----------:|
-| HMDB51   | 64.81 | [Download](<DRIVE_LINK_1SHOT_HMDB51>) |
-| UCF101   | 95.35 | [Download](<DRIVE_LINK_1SHOT_UCF101>) |
-| SSv2     | 43.56 | [Download](<DRIVE_LINK_1SHOT_SSV2>) |
-| Diving48 | 34.15 | [Download](<DRIVE_LINK_1SHOT_DIVING48>) |
-| RareAct  | 51.09 | [Download](<DRIVE_LINK_1SHOT_RAREACT>) |
+| HMDB51   | 64.81 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/1shot>) |
+| UCF101   | 95.35 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/1shot>) |
+| SSv2     | 43.56 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/1shot>) |
+| Diving48 | 34.15 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/1shot>) |
+| RareAct  | 51.09 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/1shot>) |
 
 ### Meta-trained (5-way 5-shot, from TAMT)
 
 | Dataset  | Accuracy (%, K-400 source) | Checkpoint |
 |----------|:--------------------------:|:----------:|
-| HMDB51   | 74.23 | [Download](<DRIVE_LINK_5SHOT_HMDB51>) |
-| UCF101   | 97.43 | [Download](<DRIVE_LINK_5SHOT_UCF101>) |
-| SSv2     | 61.45 | [Download](<DRIVE_LINK_5SHOT_SSV2>) |
-| Diving48 | 45.55 | [Download](<DRIVE_LINK_5SHOT_DIVING48>) |
-| RareAct  | 69.67 | [Download](<DRIVE_LINK_5SHOT_RAREACT>) |
+| HMDB51   | 74.23 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/5shot>) |
+| UCF101   | 97.43 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/5shot>) |
+| SSv2     | 61.45 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/5shot>) |
+| Diving48 | 45.55 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/5shot>) |
+| RareAct  | 69.67 | [Download](<https://huggingface.co/TRACE12345/TRACE_ckpts/tree/main/5shot>) |
 
 ## Repository Structure
 
